@@ -9,7 +9,7 @@ zero.py ${file%.fits}_rms.fits ${file%.fits}_bkg.fits
 for i in {01..99}
 do
     echo ${file} ${i}
-    python ./make_scaled_rms.py ${file} ${i}
+    python ./make_scaled_rms.py ${file} ${i} ${file%.fits}_rms.fits
     aegean --cores=6 --negative --slice=${i} --seedclip=4.5 --floodclip=3.5 --table=${file%.fits}_${i}.fits --background ${file%.fits}_bkg.fits --noise ${file%.fits}_${i}_rms.fits ${file}
     if [[ -e ${file%.fits}_${i}_comp.fits ]]
     then
